@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anup Kumar — AI Product Manager</title>
+<meta name="description" content="Anup Kumar — AI Product Manager and MBA candidate at UC Irvine Merage. I build AI automation that removes real work from real teams.">
+<meta property="og:title" content="Anup Kumar — AI Product Manager">
+<meta property="og:description" content="AI automation that removes real work from real teams — case studies with the architecture behind them.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    /* ── Light, low-glare palette ──────────────────────
+       Warm ivory paper + deep ink. Every text/background
+       pair below clears WCAG AA (4.5:1) for body copy.  */
+    --bg:#F7F5F0;          /* warm ivory page              */
+    --bg-2:#F1EEE7;        /* recessed bands               */
+    --surface:#FDFCFA;     /* cards                        */
+    --surface-2:#F2EFE9;   /* chips inside cards           */
+    --line:#E2DDD2;        /* hairlines                    */
+    --line-2:#C9C2B4;      /* stronger borders             */
+    --text:#20242E;        /* ink            14.8:1 on bg  */
+    --text-2:#474D5C;      /* secondary       8.0:1 on bg  */
+    --muted:#616776;       /* labels          5.2:1 on bg  */
+    --accent:#9A5B2D;      /* bronze          5.6:1 on bg  */
+    --accent-soft:rgba(154,91,45,.10);
+    --link:#2C6B66;        /* deep teal       5.5:1 on bg  */
+    --link-soft:rgba(44,107,102,.10);
+    --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+    --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --max:1100px;
+    --r:6px;
+    color-scheme:light;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--link);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+  p{margin:0}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .eyebrow .dot{color:var(--accent)}
+  .mono{font-family:var(--mono)}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ── Nav ─────────────────────────────────────────── */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(247,245,240,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+  .brand{font-family:var(--display);font-weight:600;font-size:17px;color:var(--text);display:flex;align-items:center;gap:10px;flex:none}
+  .brand:hover{text-decoration:none}
+  .brand .mark{width:10px;height:10px;background:var(--accent);border-radius:2px;transform:rotate(45deg)}
+  .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;align-items:center}
+  .nav ul a{display:block;padding:8px 12px;color:var(--text-2);font-size:14px;border-radius:var(--r);white-space:nowrap}
+  .nav ul a:hover{color:var(--text);text-decoration:none;background:var(--bg-2)}
+  .nav ul a.active{color:var(--text);background:var(--bg-2)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:var(--r);font-family:var(--body);font-weight:500;font-size:14px;border:1px solid var(--line-2);color:var(--text);background:var(--surface);cursor:pointer;line-height:1.2;flex:none}
+  .btn:hover{text-decoration:none;border-color:var(--accent);color:var(--accent)}
+  .btn--primary{background:var(--accent);border-color:var(--accent);color:#FFFFFF}
+  .btn--primary:hover{background:#824C25;border-color:#824C25;color:#FFFFFF}
+  .btn svg{width:15px;height:15px}
+  /* Mobile: scroll the nav instead of hiding it entirely. */
+  @media (max-width:880px){
+    .nav nav{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .nav nav::-webkit-scrollbar{display:none}
+  }
+  @media (max-width:560px){.nav nav{display:none}}
+
+  /* ── Hero ────────────────────────────────────────── */
+  .hero{padding:72px 0 48px;border-bottom:1px solid var(--line);background:
+    radial-gradient(900px 400px at 85% -10%, rgba(154,91,45,.07), transparent 60%),
+    linear-gradient(var(--bg),var(--bg))}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start}
+  .hero h1{font-size:clamp(34px,5.2vw,58px);font-weight:600;line-height:1.05;margin:18px 0 22px;max-width:16ch}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .lede{font-size:18px;color:var(--text-2);max-width:58ch;line-height:1.65}
+  .lede strong{color:var(--text);font-weight:600}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .portrait{aspect-ratio:1;border-radius:12px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .portrait .initials{font-family:var(--display);font-size:64px;font-weight:600;color:var(--line-2);letter-spacing:-.04em}
+  .meta{margin-top:14px;display:grid;gap:6px;font-size:13px;color:var(--text-2)}
+  .meta span{display:flex;gap:8px;align-items:baseline}
+  .meta b{color:var(--muted);font-weight:500;min-width:58px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  @media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.portrait{max-width:200px}}
+
+  /* ── Guide band ──────────────────────────────────────
+     Replaces the old metric strip. The numbers all live in the
+     case studies below, so this frames the work by problem type
+     instead and doubles as navigation into each case. */
+  .guide{border-bottom:1px solid var(--line);background:var(--bg-2)}
+  .guide .wrap{padding-top:28px;padding-bottom:30px}
+  .guide .eyebrow{margin-bottom:20px}
+  .guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px}
+  .g-item{display:block;padding-top:14px;border-top:2px solid var(--line-2);color:inherit}
+  .g-item:hover{text-decoration:none;border-top-color:var(--accent)}
+  .g-item .n{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent)}
+  .g-item h3{font-size:15.5px;font-weight:600;margin:9px 0 7px;line-height:1.25;color:var(--text)}
+  .g-item p{font-size:12.5px;color:var(--text-2);line-height:1.5}
+  .g-item:hover h3{color:var(--accent)}
+
+  /* ── Sections ────────────────────────────────────── */
+  section{padding:72px 0}
+  section + section{border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px}
+  .sec-head h2{font-size:clamp(26px,3vw,34px);font-weight:600;margin-top:10px}
+  .sec-head p{color:var(--text-2);max-width:42ch;font-size:15px}
+  @media (max-width:720px){.sec-head{flex-direction:column;align-items:flex-start}}
+
+  /* ── Case studies ────────────────────────────────── */
+  .cases{display:grid;gap:18px}
+  .case{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px 28px 24px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.85fr);gap:32px;box-shadow:0 1px 2px rgba(32,36,46,.04)}
+  .case:hover{border-color:var(--line-2)}
+  .case .lead h3{font-size:22px;font-weight:600;margin:10px 0 12px;line-height:1.25}
+  .case .lead .sum{color:var(--text-2);font-size:15px}
+  .case .metric{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+  .case .metric .v{font-family:var(--display);font-size:36px;font-weight:600;color:var(--accent);line-height:1;letter-spacing:-.02em}
+  .case .metric .l{margin-top:6px;font-size:13px;color:var(--text-2)}
+  .case .links{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pao{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pao h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .pao h4::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--line-2)}
+  .pao div:nth-child(3) h4::before{background:var(--accent)}
+  .pao p{font-size:14px;color:var(--text-2);line-height:1.55}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;grid-column:1/-1}
+  .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--text-2);background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:4px 8px;line-height:1.2}
+  .tag--acc{color:var(--accent);background:var(--accent-soft);border-color:transparent}
+  .chip{font-family:var(--mono);font-size:12px;padding:6px 10px;border-radius:4px;background:var(--link-soft);color:var(--link);border:1px solid transparent;display:inline-flex;align-items:center;gap:6px}
+  .chip:hover{text-decoration:none;border-color:var(--link)}
+  .chip.todo{background:transparent;border:1px dashed var(--line-2);color:var(--muted)}
+  .chip svg{width:12px;height:12px}
+  @media (max-width:900px){.case{grid-template-columns:1fr;gap:22px}.pao{grid-template-columns:1fr;gap:14px}}
+
+  /* ── Architecture diagram ────────────────────────── */
+  /* min-width:0 lets the scroller shrink inside the grid instead of widening the page */
+  .figure{margin:26px 0 0;grid-column:1/-1;min-width:0;padding-top:24px;border-top:1px solid var(--line)}
+  .figure .cap-head{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .diagram-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0}
+  .diagram-scroll svg{display:block;width:100%;min-width:880px;height:auto}
+  .figure figcaption{margin-top:16px;font-size:13.5px;color:var(--text-2);line-height:1.6;max-width:92ch}
+  /* photo + caption, side by side on desktop and stacked on phones.
+     The image is cropped 4:3 so its height sits close to the caption's —
+     a tall portrait here left a dead corner in the row. */
+  .media{display:grid;grid-template-columns:320px minmax(0,1fr);gap:30px;align-items:center}
+  .media img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)}
+  .media .cap{font-size:15px;color:var(--text-2);line-height:1.65;max-width:74ch}
+  .media .cap strong{color:var(--text);font-weight:600}
+  .media .cap .eyebrow{display:block;margin-bottom:10px}
+  .media .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  @media (max-width:720px){.media{grid-template-columns:1fr;gap:18px}}
+  .scroll-hint{display:none;font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px;letter-spacing:.04em}
+  @media (max-width:920px){.scroll-hint{display:block}}
+  /* diagram primitives — colors come from :root so the figure follows the theme */
+  .d-node{fill:var(--surface);stroke:var(--line-2);stroke-width:1}
+  .d-title{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--text)}
+  .d-sub{font-family:var(--body);font-size:11.5px;fill:var(--text-2)}
+  .d-det{font-family:var(--mono);font-size:10.5px;fill:var(--muted)}
+  .d-lbl{font-family:var(--mono);font-size:10.5px;fill:var(--muted);letter-spacing:.02em}
+  .d-legend{font-family:var(--body);font-size:12px;fill:var(--text-2)}
+  .d-band{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1;stroke-dasharray:4 4}
+  .d-band-title{font-family:var(--display);font-size:14px;font-weight:600;fill:var(--accent)}
+  .d-band-item{font-family:var(--body);font-size:12px;fill:var(--text-2)}
+  .d-watch{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 4;fill:none}
+  .d-out{stroke:var(--accent);stroke-width:1.6;fill:none}
+  .d-in{stroke:var(--link);stroke-width:1.6;fill:none}
+  /* before/after figure: ghost = the old path, built = what replaced it */
+  .d-lane{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;fill:var(--muted)}
+  .d-ghost{fill:var(--bg-2);stroke:var(--line);stroke-width:1}
+  .d-gtitle{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--muted)}
+  .d-gsub{font-family:var(--body);font-size:11px;fill:var(--muted)}
+  .d-gone{fill:var(--bg-2);stroke:var(--accent);stroke-width:1.2;stroke-dasharray:4 4}
+  .d-built{fill:var(--link-soft);stroke:var(--link);stroke-width:1.8}
+  .d-btitle{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--link)}
+  .d-grey{stroke:var(--line-2);stroke-width:1.4;fill:none}
+  .d-manual{stroke:var(--accent);stroke-width:1.4;stroke-dasharray:4 3;fill:none}
+  .d-flow{stroke:var(--link);stroke-width:1.6;fill:none}
+  .d-rep{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:5 4;fill:none}
+  .d-note{font-family:var(--body);font-size:12px;font-weight:600;fill:var(--accent)}
+  .d-note-sub{font-family:var(--body);font-size:11px;fill:var(--muted)}
+  .d-acc{font-family:var(--body);font-size:10.5px;fill:var(--accent)}
+  .d-tbl{fill:var(--surface-2);stroke:var(--line);stroke-width:1}
+  .d-wip{fill:var(--surface);stroke:var(--line-2);stroke-width:1.2;stroke-dasharray:5 4}
+  .d-det-acc{font-family:var(--mono);font-size:10.5px;fill:var(--accent)}
+  .d-sub-acc{font-family:var(--body);font-size:11.5px;font-weight:600;fill:var(--accent)}
+  .d-gate{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.6}
+  .d-gtitle-acc{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--accent)}
+  .d-chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
+
+  /* ── Experience timeline ─────────────────────────── */
+  .xp{display:grid;gap:0}
+  .role{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;padding:28px 0;border-top:1px solid var(--line)}
+  .role:first-child{border-top:0;padding-top:0}
+  .role .when{font-family:var(--mono);font-size:12.5px;color:var(--muted);line-height:1.6;letter-spacing:.02em}
+  .role .when .loc{display:block;color:var(--line-2);margin-top:2px}
+  .role h3{font-size:19px;font-weight:600;line-height:1.3}
+  .role .co{color:var(--text-2);font-size:14px;margin-top:4px}
+  .role .co small{color:var(--muted)}
+  .role ul{margin:14px 0 0;padding-left:18px;color:var(--text-2);font-size:14.5px;display:grid;gap:8px}
+  .role ul li::marker{color:var(--accent)}
+  .role .sub{margin-top:18px;padding-left:16px;border-left:2px solid var(--line)}
+  .role .sub h4{font-family:var(--body);font-size:15px;font-weight:600;color:var(--text)}
+  .role .sub .when-inline{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:8px;font-weight:400}
+  .role .sub + .sub{margin-top:22px}
+  @media (max-width:720px){.role{grid-template-columns:1fr;gap:8px}}
+
+  /* ── Education ───────────────────────────────────── */
+  .edu{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .school{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;display:grid;gap:8px;align-content:start;box-shadow:0 1px 2px rgba(32,36,46,.04)}
+  .school h3{font-size:19px;font-weight:600}
+  .school .deg{color:var(--text-2);font-size:15px}
+  .school .when{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .school ul{margin:8px 0 0;padding-left:18px;color:var(--text-2);font-size:14px;display:grid;gap:6px}
+  .school ul li::marker{color:var(--accent)}
+  @media (max-width:720px){.edu{grid-template-columns:1fr}}
+
+  /* ── Skills ──────────────────────────────────────── */
+  .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .sk{display:grid;gap:12px;align-content:start;padding-top:16px;border-top:2px solid var(--line-2)}
+  .sk:first-child{border-top-color:var(--accent)}
+  .sk h3{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--text-2)}
+  .sk .tags{margin:0}
+  @media (max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.skills{grid-template-columns:1fr}}
+
+  /* ── About ───────────────────────────────────────── */
+  .about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px}
+  .about p{color:var(--text-2);font-size:16px;max-width:58ch}
+  .about p + p{margin-top:14px}
+  .facts{display:grid;gap:0;border-top:1px solid var(--line)}
+  .fact{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .fact b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding-top:3px}
+  .fact span{color:var(--text-2)}
+  @media (max-width:820px){.about{grid-template-columns:1fr;gap:28px}}
+
+  /* ── Contact ─────────────────────────────────────── */
+  .contact{background:var(--bg-2)}
+  .contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center}
+  .contact h2{font-size:clamp(26px,3vw,34px);font-weight:600;margin-top:10px;max-width:22ch}
+  .contact p{color:var(--text-2);margin-top:12px;max-width:50ch}
+  .contact .cta{margin-top:22px}
+  .clist{display:grid;gap:10px;font-size:14px}
+  .clist a,.clist span{display:flex;align-items:center;gap:10px;color:var(--text-2)}
+  .clist a:hover{color:var(--link)}
+  .clist svg{width:16px;height:16px;color:var(--muted);flex:none}
+  @media (max-width:720px){.contact .wrap{grid-template-columns:1fr}}
+
+  footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color:var(--muted)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<!--
+  ANUP KUMAR — PORTFOLIO  ·  v6  ·  September 2026
+  ────────────────────────────────────────────────────────────────────
+  Light, low-glare palette; every text/background pair clears WCAG AA.
+  Six case studies, four inline SVG figures, one photo. No build step,
+  no libraries, no external assets beyond the Google Fonts stylesheet.
+
+  FILES THAT MUST SIT NEXT TO THIS PAGE
+  • BillBackAnup.jpg   — the award photo in the BillBack case
+  • AK_resume.pdf      — the Resume button in the nav
+  • anup.jpg           — the hero portrait
+    Each one fails soft: a missing image hides itself rather than
+    showing a broken icon, but the resume button will 404.
+
+  HOW TO EDIT
+  • Sections are marked with comments like  ===== SECTION: WORK =====
+  • Case studies carry ids (case-billback, case-warehouse, case-orders,
+    case-accounting, case-melin) that the guide band links to.
+  • Figures are hand-authored SVG. They read their colors from the
+    :root variables, so editing the palette re-themes them too.
+  • Colors, fonts and spacing live in the :root block at the top.
+-->
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Anup Kumar — home"><span class="mark" aria-hidden="true"></span>Anup Kumar</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- TODO-HOST: place AK_resume.pdf next to this file (or swap in a Drive link) -->
+    <a class="btn" href="AK_resume.pdf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      Resume
+    </a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">AI Product Manager <span class="dot">·</span> MBA Candidate, UC Irvine Merage ’27 <span class="dot">·</span> Irvine, CA</p>
+      <h1>I build AI automation that removes <em>real work from real teams.</em></h1>
+      <p class="lede">Nine years across enterprise software, AI automation and startup strategy — from database security at <strong>Oracle</strong>, to $950K+ of product revenue in a Founder’s Office, to the AI automation stack behind a <strong>four-brand consumer group</strong>. I find the work people shouldn’t be doing by hand, and I build the thing that does it instead.</p>
+      <div class="cta">
+        <a class="btn btn--primary" href="#work">See selected work</a>
+        <a class="btn" href="https://www.linkedin.com/in/anup1001" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/anup10" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <aside>
+      <div class="portrait" aria-label="Portrait of Anup Kumar">
+        <img src="anup.jpg" alt="Anup Kumar" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=\'initials\' aria-hidden=\'true\'&gt;AK&lt;/span&gt;')">
+      </div>
+      <div class="meta">
+        <span><b>Open to</b> PM · Product Marketing · Product Strategy · AI Automation</span>
+        <span><b>Recently</b> AI Automation &amp; Agents Intern, Archipelago Companies (Jun–Sep 2026)</span>
+        <span><b>Focus</b> AI agents, MCP, LLM workflows, ERP &amp; systems integration</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== GUIDE BAND =====
+     Was a row of six metrics, but every one of them is repeated in the case
+     studies below. This frames the work by the kind of problem instead, and
+     each entry jumps to its case. -->
+<div class="guide">
+  <div class="wrap">
+    <p class="eyebrow">The work, by the problem it solved</p>
+    <div class="guide-grid">
+      <a class="g-item" href="#case-billback">
+        <span class="n">01</span>
+        <h3>A product from zero</h3>
+        <p>An AI assistant that reads a medical bill and writes the dispute letter.</p>
+      </a>
+      <a class="g-item" href="#case-warehouse">
+        <span class="n">02</span>
+        <h3>A report nobody should assemble</h3>
+        <p>A morning ops summary that now writes and posts itself, before anyone arrives.</p>
+      </a>
+      <a class="g-item" href="#case-orders">
+        <span class="n">03</span>
+        <h3>Two systems that couldn&#8217;t talk</h3>
+        <p>Shopify and an ERP that only speaks scheduled SFTP, bridged and then watched.</p>
+      </a>
+      <a class="g-item" href="#case-accounting">
+        <span class="n">04</span>
+        <h3>Automation that touches money</h3>
+        <p>Three accounting skills built to stop at a person, by design.</p>
+      </a>
+      <a class="g-item" href="#case-melin">
+        <span class="n">05</span>
+        <h3>A tool doing the wrong job</h3>
+        <p>Power BI retired as a data warehouse, its modelling logic rebuilt in Python.</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION: WORK ===== -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Case studies, problem to outcome</h2>
+      </div>
+      <p>The problem as the business felt it, what I did, what changed. Metrics are the ones I reported to leadership.</p>
+    </div>
+
+    <div class="cases">
+
+      <!-- Case 1 — BillBack -->
+      <article class="case" id="case-billback">
+        <div class="lead">
+          <p class="eyebrow">UC Irvine <span class="dot">·</span> 2025–26 <span class="dot">·</span> 0→1 product</p>
+          <h3>BillBack — an AI assistant that disputes medical bills for you</h3>
+          <p class="sum">A six-month build against MBA and engineering teams, entered in two competitions and improved between them. We shipped a live product that flags billing errors and writes the dispute letter.</p>
+          <div class="metric"><div class="v num">1st</div><div class="l">Butterworth Product Development Competition · $10,000 first prize, after placing 3rd at the USC AI Product Challenge</div></div>
+          <div class="links">
+            <a class="chip" href="https://www.billbackai.com/" target="_blank" rel="noopener">billbackai.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            <!-- NOTE: SharePoint personal link — must be shared as "anyone with the link"
+                 or visitors hit a UCI sign-in wall. Check this before publishing. -->
+            <a class="chip" href="https://ucirvine-my.sharepoint.com/:p:/g/personal/anupk1_ad_uci_edu/IQDews6h3lx_TarwHfcj8Fa-ATEFjAanevcuoYjXXnStgyM?e=W8HQNV" target="_blank" rel="noopener">Pitch deck &amp; demo video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+        <div class="pao">
+          <div><h4>Problem</h4><p>Billing errors are common, but almost nobody contests one — reading an itemized statement and grounding a dispute is expert work.</p></div>
+          <div><h4>What I did</h4><p>Owned product definition and the AI pipeline: patient research, error detection against billing codes, and cited letter generation. Took it to the USC AI Product Challenge first — framed for TPAs and health plans, with a Recovery Probability Score ranking which errors were worth pursuing — then rebuilt on what the judges pushed back on before entering Butterworth.</p></div>
+          <div><h4>Outcome</h4><p>Third at USC, then first of all teams at Butterworth with the improved build — a working application that flags overcharges and produces a ready-to-send dispute letter. We’re still building on it.</p></div>
+          <div class="tags">
+            <span class="tag tag--acc">0→1 product</span><span class="tag">LLM · RAG</span><span class="tag">OCR · NLP</span><span class="tag">Healthcare billing</span><span class="tag">User research</span><span class="tag">Pitching</span>
+          </div>
+        </div>
+
+        <!-- TODO-HOST: BillBackAnup.jpg ships next to this file. If it's ever
+             missing the figure hides itself rather than showing a broken image. -->
+        <figure class="figure">
+          <div class="media">
+            <img src="BillBackAnup.jpg" alt="Anup Kumar holding the $10,000 first-prize cheque for BillBack at the Butterworth Product Development Competition award ceremony, UC Irvine, May 2026"
+                 onerror="this.closest('.figure').style.display='none'">
+            <div class="cap">
+              <span class="eyebrow">Award ceremony <span class="dot">·</span> May 2026</span>
+              <p><strong>First place, Butterworth Product Development Competition.</strong> The build that came out of a third-place finish at the USC AI Product Challenge earlier that year — reworked on the judges’ feedback, then judged against MBA and engineering teams at UC Irvine’s Donald Bren School of Information &amp; Computer Sciences for the $10,000 first prize.</p>
+              <div class="meta-row">
+                <span class="tag">UC Irvine</span><span class="tag">Donald Bren ICS</span><span class="tag">May 2026</span><span class="tag tag--acc">1st of all teams</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </article>
+
+      <!-- Case 2 — AI automation stack -->
+      <article class="case" id="case-warehouse">
+        <div class="lead">
+          <p class="eyebrow">Archipelago Companies <span class="dot">·</span> 2026 <span class="dot">·</span> AI platform</p>
+          <h3>The automation stack that made daily warehouse reporting touchless</h3>
+          <p class="sum">Daily ops reporting across four brands and three markets took someone 2–3 hours every morning. I built the tool layer that lets AI agents do it instead.</p>
+          <div class="metric"><div class="v">Zero</div><div class="l">human effort in a 2–3 hour daily task · the morning number lands ~4 hours earlier</div></div>
+        </div>
+        <div class="pao">
+          <div><h4>Problem</h4><p>Warehouse status depended on someone stitching 3PL exports to ERP pick tickets by hand, so the morning number was late and sometimes stale.</p></div>
+          <div><h4>What I did</h4><p>Automated the whole workflow. Plugins with cloud scheduled tasks fire at 5:00 AM daily: skills pull the overnight reports from the Outlook inbox through the Graph API, normalize them with <span class="mono">convert.py</span> on the Archipelago MCP server we built, land them in the operations team’s shared SharePoint directory, archive the previous day’s files and read the latest ones — then generate the summary and post it to the operations Slack channel.</p></div>
+          <div><h4>Outcome</h4><p>A job that took 2–3 hours every day now takes none. The whole chain runs unattended for all four brands across the US, UK and EU, the summary is waiting in Slack before the team starts, and the MCP server underneath it now carries Archipelago’s other agent workflows.</p></div>
+          <div class="tags">
+            <span class="tag tag--acc">AI agents</span><span class="tag">MCP</span><span class="tag">Claude</span><span class="tag">LLM workflows</span><span class="tag">Microsoft Graph</span><span class="tag">SharePoint · Slack</span><span class="tag">Ops reporting</span>
+          </div>
+        </div>
+
+        <!-- ===== THE DAILY PIPELINE =====
+             The whole warehouse workflow, end to end, as it ran at handover:
+             one cloud scheduled task at 5:00 AM drives every step through to
+             the Slack summary. No figcaption by request — the aria-label
+             carries the same description for screen readers. -->
+        <figure class="figure">
+          <p class="cap-head">The daily run</p>
+          <p class="scroll-hint">&#8592; swipe to see the full diagram &#8594;</p>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 1120 400" role="img"
+                 aria-label="A cloud scheduled task fires every weekday at 5:00 AM. Skills pull the overnight 3PL and ERP reports from the Outlook inbox through the Microsoft Graph API, normalize them with convert.py on the Archipelago MCP server, land them in the operations team's shared SharePoint directory where the previous day's files are archived and the latest are used, generate a warehouse status summary covering four brands across the US, UK and EU, and post it to the operations Slack channel.">
+              <defs>
+                <marker id="wFlow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--link)"/>
+                </marker>
+                <marker id="wTrig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
+                </marker>
+              </defs>
+
+              <!-- the trigger -->
+              <rect class="d-gate" x="30" y="46" width="380" height="38" rx="19"/>
+              <text class="d-note" x="52" y="70">Cloud scheduled task &#8212; every weekday, 5:00 AM</text>
+              <line class="d-rep" x1="114" y1="84" x2="114" y2="104" marker-end="url(#wTrig)"/>
+
+              <rect class="d-node" x="30" y="110" width="168" height="120" rx="8"/>
+              <text class="d-title" x="114" y="145" text-anchor="middle">Outlook inbox</text>
+              <text class="d-sub"   x="114" y="168" text-anchor="middle">3PL + ERP reports</text>
+              <text class="d-sub"   x="114" y="186" text-anchor="middle">arrive overnight</text>
+
+              <rect class="d-built" x="253" y="110" width="168" height="120" rx="8"/>
+              <text class="d-btitle" x="337" y="145" text-anchor="middle">Fetch &amp; normalize</text>
+              <text class="d-sub"    x="337" y="168" text-anchor="middle">Graph API + convert.py</text>
+              <text class="d-sub"    x="337" y="186" text-anchor="middle">on the Archipelago</text>
+              <text class="d-sub"    x="337" y="204" text-anchor="middle">MCP server</text>
+
+              <rect class="d-node" x="476" y="110" width="168" height="120" rx="8"/>
+              <text class="d-title" x="560" y="145" text-anchor="middle">SharePoint</text>
+              <text class="d-sub"   x="560" y="168" text-anchor="middle">ops team directory</text>
+              <text class="d-sub"   x="560" y="186" text-anchor="middle">previous day archived,</text>
+              <text class="d-sub"   x="560" y="204" text-anchor="middle">latest files used</text>
+
+              <rect class="d-built" x="699" y="110" width="168" height="120" rx="8"/>
+              <text class="d-btitle" x="783" y="145" text-anchor="middle">Generate summary</text>
+              <text class="d-sub"    x="783" y="168" text-anchor="middle">reads the latest files,</text>
+              <text class="d-sub"    x="783" y="186" text-anchor="middle">builds the warehouse</text>
+              <text class="d-sub"    x="783" y="204" text-anchor="middle">status write-up</text>
+
+              <rect class="d-node" x="922" y="110" width="168" height="120" rx="8"/>
+              <text class="d-title" x="1006" y="145" text-anchor="middle">Slack</text>
+              <text class="d-sub"   x="1006" y="168" text-anchor="middle">operations channel</text>
+              <text class="d-sub"   x="1006" y="186" text-anchor="middle">waiting before the</text>
+              <text class="d-sub"   x="1006" y="204" text-anchor="middle">team starts</text>
+
+              <line class="d-flow" x1="204" y1="170" x2="247" y2="170" marker-end="url(#wFlow)"/>
+              <text class="d-lbl"  x="225.5" y="160" text-anchor="middle">fetch</text>
+              <line class="d-flow" x1="427" y1="170" x2="470" y2="170" marker-end="url(#wFlow)"/>
+              <text class="d-lbl"  x="448.5" y="160" text-anchor="middle">.xlsx</text>
+              <line class="d-flow" x1="650" y1="170" x2="693" y2="170" marker-end="url(#wFlow)"/>
+              <text class="d-lbl"  x="671.5" y="160" text-anchor="middle">read</text>
+              <line class="d-flow" x1="873" y1="170" x2="916" y2="170" marker-end="url(#wFlow)"/>
+              <text class="d-lbl"  x="894.5" y="160" text-anchor="middle">post</text>
+
+              <rect class="d-band" x="30" y="280" width="1060" height="90" rx="10"/>
+              <text class="d-band-title" x="52" y="308">Runs unattended, every weekday</text>
+              <circle cx="56" cy="334" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="68" y="338">4 brands &#8212; OluKai, Melin,</text>
+              <text class="d-band-item" x="68" y="356">Roark and Amble</text>
+              <circle cx="420" cy="334" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="436" y="338">3 regions &#8212; US, UK and EU,</text>
+              <text class="d-band-item" x="436" y="356">in a single summary</text>
+              <circle cx="760" cy="334" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="776" y="338">Posted to the operations</text>
+              <text class="d-band-item" x="776" y="356">channel before start of day</text>
+            </svg>
+          </div>
+        </figure>
+      </article>
+
+      <!-- Case 3 — Shopify → ERP -->
+      <article class="case" id="case-orders">
+        <div class="lead">
+          <p class="eyebrow">Archipelago Companies <span class="dot">·</span> 2026 <span class="dot">·</span> Integration</p>
+          <h3>A Shopify → ERP order bridge where no direct connector existed</h3>
+          <p class="sum">Four DTC brands were selling through Shopify, while fulfilment and inventory operations ran on Full Circle ERP — a system that exchanges data only through scheduled, file-based SFTP transfers.</p>
+          <div class="metric"><div class="v num">$23K+</div><div class="l">annual labor cost removed · 2.5K+ orders/day now flow untouched</div></div>
+        </div>
+        <div class="pao">
+          <div><h4>Problem</h4><p>No automated integration connected the SFTP process with Shopify, so files had to be moved and monitored by hand between the two systems — creating delays and operational risk across 2.5K orders a day.</p></div>
+          <div><h4>What I did</h4><p>Proposed and helped implement an automated integration using systems the organization already had: Pipe17 handled the Shopify-side file exchange, Couchdrop provided the SFTP layer, and Full Circle’s scheduled jobs picked up the inbound files and returned fulfilment, tracking and inventory updates through the same route. We then used n8n as the monitoring and orchestration layer — verifying each handoff, detecting missing, delayed or duplicate files, and alerting the team in Slack when something needed attention.</p></div>
+          <div><h4>Outcome</h4><p>The flow works in both directions: order data moves from Shopify into Full Circle, while fulfilment, tracking and inventory updates flow back to Shopify. Once the architecture was working for one brand we standardized it and rolled it out across all four — $23K+ of annual labor removed, and failures surface as Slack alerts rather than as a mismatch found later.</p></div>
+          <div class="tags">
+            <span class="tag tag--acc">Systems integration</span><span class="tag">Shopify</span><span class="tag">Pipe17</span><span class="tag">Couchdrop · SFTP</span><span class="tag">Full Circle ERP</span><span class="tag">n8n</span><span class="tag">Monitoring &amp; alerting</span>
+          </div>
+        </div>
+
+        <!-- ===== ARCHITECTURE DIAGRAM =====
+             Pure inline SVG — no libraries, no images. Colors read from the
+             :root variables, so editing the palette re-themes the figure too.
+             Geometry: 4 nodes on one baseline (y 110–228), bidirectional arrows
+             in the gaps, n8n watchdog band beneath (y 300–412), Slack at 458. -->
+        <figure class="figure">
+          <p class="cap-head">Architecture</p>
+          <p class="scroll-hint">← swipe to see the full diagram →</p>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 1120 560" role="img"
+                 aria-label="Order files move from Shopify through Pipe17 into Couchdrop SFTP folders, where Full Circle ERP's scheduled jobs collect them and push fulfilment and inventory data back along the same path. An n8n layer monitors every hop and the transfer folders, posting discrepancies to Slack.">
+              <defs>
+                <marker id="arrOut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
+                </marker>
+                <marker id="arrIn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--link)"/>
+                </marker>
+              </defs>
+
+              <!-- legend -->
+              <line class="d-out" x1="30" y1="42" x2="60" y2="42" marker-end="url(#arrOut)"/>
+              <text class="d-legend" x="70" y="46">Orders out — Shopify to ERP</text>
+              <line class="d-in" x1="330" y1="42" x2="360" y2="42" marker-end="url(#arrIn)"/>
+              <text class="d-legend" x="370" y="46">Fulfilment &amp; status back — ERP to Shopify</text>
+
+              <!-- nodes: 150 wide on 153 gaps, so the return labels fit their lanes -->
+              <rect class="d-node" x="30" y="110" width="150" height="118" rx="8"/>
+              <text class="d-title" x="105" y="144" text-anchor="middle">Shopify</text>
+              <text class="d-sub"   x="105" y="166" text-anchor="middle">4 brand storefronts</text>
+              <text class="d-det"   x="105" y="187" text-anchor="middle">OluKai · Melin</text>
+              <text class="d-det"   x="105" y="203" text-anchor="middle">Roark · Amble</text>
+
+              <rect class="d-node" x="333" y="110" width="150" height="118" rx="8"/>
+              <text class="d-title" x="408" y="144" text-anchor="middle">Pipe17</text>
+              <text class="d-sub"   x="408" y="166" text-anchor="middle">Shopify connector</text>
+              <text class="d-det"   x="408" y="187" text-anchor="middle">drops + collects</text>
+              <text class="d-det"   x="408" y="203" text-anchor="middle">files</text>
+
+              <rect class="d-node" x="636" y="110" width="150" height="118" rx="8"/>
+              <text class="d-title" x="711" y="144" text-anchor="middle">Couchdrop</text>
+              <text class="d-sub"   x="711" y="166" text-anchor="middle">SFTP exchange</text>
+              <text class="d-det"   x="711" y="187" text-anchor="middle">/outbound</text>
+              <text class="d-det"   x="711" y="203" text-anchor="middle">/inbound</text>
+
+              <rect class="d-node" x="939" y="110" width="150" height="118" rx="8"/>
+              <text class="d-title" x="1014" y="144" text-anchor="middle">Full Circle ERP</text>
+              <text class="d-sub"   x="1014" y="166" text-anchor="middle">Fulfilment &amp; finance</text>
+              <text class="d-det"   x="1014" y="187" text-anchor="middle">scheduled</text>
+              <text class="d-det"   x="1014" y="203" text-anchor="middle">SFTP jobs</text>
+
+              <!-- hop 1: Shopify <-> Pipe17 -->
+              <line class="d-out" x1="188" y1="155" x2="323" y2="155" marker-end="url(#arrOut)"/>
+              <text class="d-lbl" x="256.5" y="147" text-anchor="middle">orders</text>
+              <line class="d-in"  x1="323" y1="196" x2="188" y2="196" marker-end="url(#arrIn)"/>
+              <text class="d-lbl" x="256.5" y="214" text-anchor="middle">fulfilment, inventory</text>
+
+              <!-- hop 2: Pipe17 <-> Couchdrop -->
+              <line class="d-out" x1="491" y1="155" x2="626" y2="155" marker-end="url(#arrOut)"/>
+              <text class="d-lbl" x="559.5" y="147" text-anchor="middle">order files</text>
+              <line class="d-in"  x1="626" y1="196" x2="491" y2="196" marker-end="url(#arrIn)"/>
+              <text class="d-lbl" x="559.5" y="214" text-anchor="middle">ship + inventory files</text>
+
+              <!-- hop 3: Couchdrop <-> Full Circle -->
+              <line class="d-out" x1="794" y1="155" x2="929" y2="155" marker-end="url(#arrOut)"/>
+              <text class="d-lbl" x="862.5" y="147" text-anchor="middle">ERP fetch job</text>
+              <line class="d-in"  x1="929" y1="196" x2="794" y2="196" marker-end="url(#arrIn)"/>
+              <text class="d-lbl" x="862.5" y="214" text-anchor="middle">ERP push job</text>
+
+              <!-- watch lines from the n8n band up to each hop -->
+              <line class="d-watch" x1="105"  y1="300" x2="105"  y2="240"/>
+              <circle cx="105"  cy="238" r="2.5" fill="var(--line-2)"/>
+              <line class="d-watch" x1="408"  y1="300" x2="408"  y2="240"/>
+              <circle cx="408"  cy="238" r="2.5" fill="var(--line-2)"/>
+              <line class="d-watch" x1="711"  y1="300" x2="711"  y2="240"/>
+              <circle cx="711"  cy="238" r="2.5" fill="var(--line-2)"/>
+              <line class="d-watch" x1="1014" y1="300" x2="1014" y2="240"/>
+              <circle cx="1014" cy="238" r="2.5" fill="var(--line-2)"/>
+
+              <!-- n8n orchestration band -->
+              <rect class="d-band" x="30" y="300" width="1059" height="112" rx="10"/>
+              <text class="d-band-title" x="52" y="330">n8n — orchestration &amp; watchdog</text>
+              <circle cx="56" cy="362" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="68" y="366">Verifies every handoff</text>
+              <text class="d-band-item" x="68" y="386">completed, in order</text>
+              <circle cx="420" cy="362" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="432" y="366">Polls the transfer folders</text>
+              <text class="d-band-item" x="432" y="386">on a schedule</text>
+              <circle cx="760" cy="362" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="772" y="366">Detects missing, delayed</text>
+              <text class="d-band-item" x="772" y="386">or duplicate files</text>
+
+              <!-- alert path -->
+              <line class="d-out" x1="560" y1="412" x2="560" y2="454" marker-end="url(#arrOut)"/>
+              <text class="d-lbl" x="572" y="438">discrepancy</text>
+              <rect class="d-node" x="430" y="458" width="260" height="70" rx="8"/>
+              <text class="d-title" x="560" y="487" text-anchor="middle">Slack</text>
+              <text class="d-sub"   x="560" y="508" text-anchor="middle">exceptions posted to the team</text>
+            </svg>
+          </div>
+          <figcaption>Each system already owned one hop, so the work was composition rather than construction: Pipe17 moves files to and from Shopify, Couchdrop holds them as SFTP folders, and Full Circle’s own scheduled jobs collect and return them. Orders travel out; fulfilment, tracking and inventory come back along the same path. n8n sits across the whole route — verifying each handoff, polling folder state, and posting anything missing, delayed or duplicated into Slack. Standardized on one brand, then rolled out to all four.</figcaption>
+        </figure>
+      </article>
+
+      <!-- Case 4 — Accounting: three skills across the cash cycle -->
+      <article class="case" id="case-accounting">
+        <div class="lead">
+          <p class="eyebrow">Archipelago Companies <span class="dot">·</span> 2026 <span class="dot">·</span> Finance operations</p>
+          <h3>Automating the accounting cycle without giving up the controls</h3>
+          <p class="sum">Three manual jobs in the cash cycle — reading remittance advices, matching deposits to invoices, and assembling the payment-run import. Each now runs as a skill that deliberately stops short of the ledger, and all three were delivered into production.</p>
+          <div class="metric"><div class="v num">~1 min</div><div class="l">per remittance advice, down from about an hour by hand · output verified line for line against the team’s own file</div></div>
+        </div>
+        <div class="pao">
+          <div><h4>Problem</h4><p>Major customers pay hundreds of invoices in one transfer, and the advice listing them runs from a handful of lines to several thousand. Reading one by hand took about an hour and could be quietly wrong. On the payables side, the ERP’s import workbook was assembled by hand from three brands’ aging reports, with routing and exclusion rules that lived in people’s heads.</p></div>
+          <div><h4>What I did</h4><p>Built each step to the same shape: a deterministic script does the arithmetic, the model orchestrates, and every run is checked against totals the customer or the team stated independently. A run that can’t reconcile refuses to produce a file at all — a partly-correct cash file is worse than none — and nothing posts to the ERP, so each skill ends at a file a person reviews.</p></div>
+          <div><h4>Outcome</h4><p>All three run in production. Remittance extraction covers five major customers across three brands, and one generated file came back identical to the team’s hand-built version line for line, across 4,931 rows. Deposit reconciliation matches the day’s deposits to invoices and writes proposed matches for review. The payables importer produces the ERP’s import workbook with its exclusion list as a first-class output, so the reviewer sees exactly what was left out.</p></div>
+          <div class="tags">
+            <span class="tag tag--acc">Finance operations</span><span class="tag">Cash application</span><span class="tag">AR · AP</span><span class="tag">Deterministic scripts</span><span class="tag">Validation gates</span><span class="tag">Human-in-the-loop</span><span class="tag">Claude Skills</span>
+          </div>
+        </div>
+
+        <!-- ===== ACCOUNTING OPERATIONS SURFACE =====
+             Deliberately drawn at the level of process stages and control
+             points — no payment mechanics, no customer names, no file formats.
+             The claim is that automation stops at a human gate, so the gates
+             are the most prominent thing in the figure. -->
+        <figure class="figure">
+          <p class="cap-head">Where the automation sits — and where it stops</p>
+          <p class="scroll-hint">← swipe to see the full diagram →</p>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 1120 560" role="img"
+                 aria-label="Two lanes of the accounting cash cycle. In receivables, a remittance advice is extracted and validated, deposits are reconciled to invoices, then a person reviews every match before the file is loaded into Full Circle ERP. In payables, AP aging reports from three brands are filtered, routed and netted into an import workbook with an exclusions report, which a reviewer checks before the payment run is released. Every automated stage ends at a human control point.">
+              <defs>
+                <marker id="aFlow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--link)"/>
+                </marker>
+              </defs>
+
+              <!-- ── Receivables ── -->
+              <text class="d-lane" x="30" y="58">Receivables · cash in</text>
+
+              <rect class="d-node" x="30" y="80" width="168" height="100" rx="8"/>
+              <text class="d-title" x="114" y="110" text-anchor="middle">Remittance advice</text>
+              <text class="d-sub"   x="114" y="130" text-anchor="middle">from the customer</text>
+              <text class="d-det"   x="114" y="149" text-anchor="middle">5 to 5,779 lines</text>
+
+              <rect class="d-built" x="253" y="80" width="168" height="100" rx="8"/>
+              <text class="d-btitle" x="337" y="110" text-anchor="middle">Extract &amp; validate</text>
+              <text class="d-sub"    x="337" y="130" text-anchor="middle">reads the advice,</text>
+              <text class="d-sub"    x="337" y="147" text-anchor="middle">checks the arithmetic</text>
+              <text class="d-chip"   x="337" y="168" text-anchor="middle" fill="var(--link)">live</text>
+
+              <rect class="d-built" x="476" y="80" width="168" height="100" rx="8"/>
+              <text class="d-btitle" x="560" y="110" text-anchor="middle">Reconcile deposits</text>
+              <text class="d-sub"    x="560" y="130" text-anchor="middle">matches deposits</text>
+              <text class="d-sub"    x="560" y="147" text-anchor="middle">to invoices</text>
+              <text class="d-chip"   x="560" y="168" text-anchor="middle" fill="var(--link)">live</text>
+
+              <rect class="d-gate" x="699" y="80" width="168" height="100" rx="8"/>
+              <text class="d-gtitle-acc" x="783" y="110" text-anchor="middle">Human review</text>
+              <text class="d-sub"        x="783" y="130" text-anchor="middle">Accounting confirms</text>
+              <text class="d-sub"        x="783" y="147" text-anchor="middle">every match</text>
+              <text class="d-chip"       x="783" y="168" text-anchor="middle" fill="var(--accent)">control point</text>
+
+              <rect class="d-node" x="922" y="80" width="168" height="100" rx="8"/>
+              <text class="d-title" x="1006" y="110" text-anchor="middle">Full Circle ERP</text>
+              <text class="d-sub"   x="1006" y="130" text-anchor="middle">the reviewed file</text>
+              <text class="d-sub"   x="1006" y="147" text-anchor="middle">is loaded</text>
+
+              <line class="d-flow" x1="204" y1="130" x2="247" y2="130" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="225.5" y="120" text-anchor="middle">arrives</text>
+              <line class="d-flow" x1="427" y1="130" x2="470" y2="130" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="448.5" y="120" text-anchor="middle">file</text>
+              <line class="d-flow" x1="650" y1="130" x2="693" y2="130" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="671.5" y="120" text-anchor="middle">review</text>
+              <line class="d-flow" x1="873" y1="130" x2="916" y2="130" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="894.5" y="120" text-anchor="middle">load</text>
+
+              <!-- ── Payables ── -->
+              <text class="d-lane" x="30" y="278">Payables · cash out</text>
+
+              <rect class="d-node" x="30" y="300" width="168" height="100" rx="8"/>
+              <text class="d-title" x="114" y="330" text-anchor="middle">AP aging reports</text>
+              <text class="d-sub"   x="114" y="350" text-anchor="middle">three brands,</text>
+              <text class="d-sub"   x="114" y="367" text-anchor="middle">different formats</text>
+
+              <rect class="d-built" x="253" y="300" width="168" height="100" rx="8"/>
+              <text class="d-btitle" x="337" y="330" text-anchor="middle">Filter, route, net</text>
+              <text class="d-sub"    x="337" y="350" text-anchor="middle">one payment per vendor,</text>
+              <text class="d-sub"    x="337" y="367" text-anchor="middle">credits netted</text>
+              <text class="d-chip"   x="337" y="388" text-anchor="middle" fill="var(--link)">live</text>
+
+              <rect class="d-node" x="476" y="300" width="168" height="100" rx="8"/>
+              <text class="d-title" x="560" y="330" text-anchor="middle">Import workbook</text>
+              <text class="d-sub"   x="560" y="350" text-anchor="middle">the ERP’s exact layout</text>
+              <text class="d-sub"   x="560" y="367" text-anchor="middle">+ exclusions report</text>
+
+              <rect class="d-gate" x="699" y="300" width="168" height="100" rx="8"/>
+              <text class="d-gtitle-acc" x="783" y="330" text-anchor="middle">Human review</text>
+              <text class="d-sub"        x="783" y="350" text-anchor="middle">reviewer removes</text>
+              <text class="d-sub"        x="783" y="367" text-anchor="middle">anything not paid</text>
+              <text class="d-chip"       x="783" y="388" text-anchor="middle" fill="var(--accent)">control point</text>
+
+              <rect class="d-node" x="922" y="300" width="168" height="100" rx="8"/>
+              <text class="d-title" x="1006" y="330" text-anchor="middle">Full Circle ERP</text>
+              <text class="d-sub"   x="1006" y="350" text-anchor="middle">payment run</text>
+              <text class="d-sub"   x="1006" y="367" text-anchor="middle">released</text>
+
+              <line class="d-flow" x1="204" y1="350" x2="247" y2="350" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="225.5" y="340" text-anchor="middle">export</text>
+              <line class="d-flow" x1="427" y1="350" x2="470" y2="350" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="448.5" y="340" text-anchor="middle">build</text>
+              <line class="d-flow" x1="650" y1="350" x2="693" y2="350" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="671.5" y="340" text-anchor="middle">review</text>
+              <line class="d-flow" x1="873" y1="350" x2="916" y2="350" marker-end="url(#aFlow)"/>
+              <text class="d-lbl"  x="894.5" y="340" text-anchor="middle">upload</text>
+
+              <!-- ── the shared pattern ── -->
+              <rect class="d-band" x="30" y="440" width="1060" height="90" rx="10"/>
+              <text class="d-band-title" x="52" y="468">The pattern behind all three</text>
+              <circle cx="56" cy="494" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="68" y="498">Code does the arithmetic;</text>
+              <text class="d-band-item" x="68" y="516">the model orchestrates</text>
+              <circle cx="420" cy="494" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="436" y="498">Refuse rather than guess — a</text>
+              <text class="d-band-item" x="436" y="516">skipped check isn’t a passed one</text>
+              <circle cx="760" cy="494" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="776" y="498">Nothing reaches the ledger</text>
+              <text class="d-band-item" x="776" y="516">without a person</text>
+            </svg>
+          </div>
+          <figcaption>The cash cycle as it runs now. Three stages are automated, and each ends at the same place: a file a person reviews. Nothing reaches the ledger without that step. The checks inside each skill test the arithmetic against totals stated independently by the customer or the team, and a skill that cannot reconcile produces nothing at all rather than something plausible.</figcaption>
+        </figure>
+      </article>
+
+      <!-- Case 5 — Melin: replacing Power BI as the warehouse -->
+      <article class="case" id="case-melin">
+        <div class="lead">
+          <p class="eyebrow">Archipelago Companies <span class="dot">·</span> 2026 <span class="dot">·</span> Data platform migration</p>
+          <h3>Taking Power BI out of the middle of a planning workflow</h3>
+          <p class="sum">Melin’s ops team used Power BI as a data warehouse. ERP files arrived by email and were carried into SharePoint by hand, then mapped and enriched inside the semantic model.</p>
+          <div class="metric"><div class="v num">17 → 0</div><div class="l">manual actions a day, eliminated · the fulfilment report went from weekly to daily</div></div>
+        </div>
+        <div class="pao">
+          <div><h4>Problem</h4><p>Eight raw ERP exports arrived by email each night and were moved into SharePoint by hand — around 17 manual actions a day before anyone looked at a number. Everything downstream lived inside a Power BI model doing a job it wasn’t built for, and the fulfilment report was rebuilt weekly.</p></div>
+          <div><h4>What I did</h4><p>Replaced the whole path. A dedicated SFTP user per export slot removed the hand-carrying, so files flow Full Circle → Couchdrop → SharePoint with a dated archive copy written on arrival. Then I read the semantic model’s own TMDL definition to extract every Power Query M transform and DAX column and re-implemented them as a deterministic Python transform, packaged as scheduled skills that verify their own inputs and outputs.</p></div>
+          <div><h4>Outcome</h4><p>Power BI is retired as the warehouse and modelling layer for Melin’s fulfilment and planning workflow. The report went from weekly to daily — it rebuilds every weekday at 9:00 AM from enriched workbooks the team’s existing pivots read directly. Ten consecutive business days running beside Power BI matched it on 11 headline metrics with zero variance, and that record is what justified the cutover.</p></div>
+          <div class="tags">
+            <span class="tag tag--acc">Data platform migration</span><span class="tag">Power BI → Python</span><span class="tag">DAX · Power Query M</span><span class="tag">TMDL extraction</span><span class="tag">Claude Skills</span><span class="tag">Couchdrop · SharePoint</span><span class="tag">Parallel-run reconciliation</span>
+          </div>
+        </div>
+
+        <!-- ===== BEFORE / AFTER DIAGRAM =====
+             The claim is "Power BI came out of the middle", so the figure is a
+             comparison: two lanes on shared column positions, so the node that
+             changed sits directly above its replacement. Ghost styling = the old
+             path; teal = the piece that was built. -->
+        <figure class="figure">
+          <p class="cap-head">Before / after</p>
+          <p class="scroll-hint">← swipe to see the full diagram →</p>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 1120 570" role="img"
+                 aria-label="Before: Full Circle ERP exports arrive by email and are dropped into SharePoint by hand, then Power BI acts as the data warehouse feeding Excel pivots. After: eight nightly exports flow over SFTP through Couchdrop into SharePoint with dated archive copies written on upload, and a deterministic Python transform replaces Power BI, publishing enriched workbooks that the same Excel pivots read directly.">
+              <defs>
+                <marker id="mGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--line-2)"/>
+                </marker>
+                <marker id="mMan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
+                </marker>
+                <marker id="mFlow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--link)"/>
+                </marker>
+              </defs>
+
+              <!-- ── BEFORE lane ── -->
+              <text class="d-lane" x="30" y="58">Before · Power BI as the data warehouse</text>
+
+              <rect class="d-ghost" x="30" y="78" width="168" height="88" rx="8"/>
+              <text class="d-gtitle" x="114" y="108" text-anchor="middle">Full Circle ERP</text>
+              <text class="d-gsub"   x="114" y="128" text-anchor="middle">raw report exports</text>
+
+              <rect class="d-ghost" x="253" y="78" width="168" height="88" rx="8"/>
+              <text class="d-gtitle" x="337" y="108" text-anchor="middle">Email inbox</text>
+              <text class="d-gsub"   x="337" y="128" text-anchor="middle">files arrive as</text>
+              <text class="d-gsub"   x="337" y="145" text-anchor="middle">attachments</text>
+
+              <rect class="d-ghost" x="476" y="78" width="168" height="88" rx="8"/>
+              <text class="d-gtitle" x="560" y="108" text-anchor="middle">SharePoint</text>
+              <text class="d-gsub"   x="560" y="128" text-anchor="middle">dropped in by hand</text>
+
+              <rect class="d-gone" x="699" y="78" width="168" height="88" rx="8"/>
+              <text class="d-gtitle" x="783" y="106" text-anchor="middle">Power BI</text>
+              <text class="d-gsub"   x="783" y="125" text-anchor="middle">warehouse + mapping,</text>
+              <text class="d-gsub"   x="783" y="142" text-anchor="middle">M transforms, DAX</text>
+              <text class="d-acc"    x="783" y="159" text-anchor="middle">retired at cutover</text>
+
+              <rect class="d-ghost" x="922" y="78" width="168" height="88" rx="8"/>
+              <text class="d-gtitle" x="1006" y="108" text-anchor="middle">Excel pivots</text>
+              <text class="d-gsub"   x="1006" y="128" text-anchor="middle">Fulfilment Report</text>
+
+              <line class="d-grey"   x1="204" y1="122" x2="247" y2="122" marker-end="url(#mGrey)"/>
+              <text class="d-lbl"    x="225.5" y="112" text-anchor="middle">export</text>
+              <line class="d-manual" x1="427" y1="122" x2="470" y2="122" marker-end="url(#mMan)"/>
+              <text class="d-lbl"    x="448.5" y="112" text-anchor="middle">by hand</text>
+              <line class="d-grey"   x1="650" y1="122" x2="693" y2="122" marker-end="url(#mGrey)"/>
+              <text class="d-lbl"    x="671.5" y="112" text-anchor="middle">refresh</text>
+              <line class="d-grey"   x1="873" y1="122" x2="916" y2="122" marker-end="url(#mGrey)"/>
+              <text class="d-lbl"    x="894.5" y="112" text-anchor="middle">feeds</text>
+
+              <!-- ── the swap ── -->
+              <line class="d-rep" x1="783" y1="168" x2="783" y2="298" marker-end="url(#mMan)"/>
+              <text class="d-note"     x="795" y="210">replaced by</text>
+              <text class="d-note-sub" x="795" y="230">the same logic, re-implemented</text>
+              <text class="d-note-sub" x="795" y="246">in Python — 10 business days in</text>
+              <text class="d-note-sub" x="795" y="262">parallel, 11 metrics, zero variance</text>
+
+              <line class="d-watch" x1="1006" y1="168" x2="1006" y2="300"/>
+              <text class="d-note-sub" x="1018" y="210">same pivots,</text>
+              <text class="d-note-sub" x="1018" y="226">new source</text>
+
+              <!-- ── AFTER lane ── -->
+              <text class="d-lane" x="30" y="290">After · Power BI out of the path</text>
+
+              <rect class="d-node" x="30" y="306" width="168" height="100" rx="8"/>
+              <text class="d-title" x="114" y="336" text-anchor="middle">Full Circle ERP</text>
+              <text class="d-sub"   x="114" y="356" text-anchor="middle">8 nightly exports</text>
+              <text class="d-det"   x="114" y="375" text-anchor="middle">1003 · 1004 ·</text>
+              <text class="d-det"   x="114" y="391" text-anchor="middle">2001–2006</text>
+
+              <rect class="d-node" x="253" y="306" width="168" height="100" rx="8"/>
+              <text class="d-title" x="337" y="336" text-anchor="middle">Couchdrop</text>
+              <text class="d-sub"   x="337" y="356" text-anchor="middle">SFTP exchange</text>
+              <text class="d-sub"   x="337" y="373" text-anchor="middle">8 dedicated users,</text>
+              <text class="d-sub"   x="337" y="390" text-anchor="middle">one per export</text>
+
+              <rect class="d-node" x="476" y="306" width="168" height="100" rx="8"/>
+              <text class="d-title" x="560" y="336" text-anchor="middle">SharePoint</text>
+              <text class="d-sub"   x="560" y="356" text-anchor="middle">/Database folder</text>
+              <text class="d-sub"   x="560" y="373" text-anchor="middle">dated archive copy</text>
+              <text class="d-sub"   x="560" y="390" text-anchor="middle">written on upload</text>
+
+              <rect class="d-built" x="699" y="306" width="168" height="100" rx="8"/>
+              <text class="d-btitle" x="783" y="336" text-anchor="middle">Python transform</text>
+              <text class="d-sub"    x="783" y="356" text-anchor="middle">M + DAX logic codified</text>
+              <text class="d-sub"    x="783" y="373" text-anchor="middle">from the model’s TMDL</text>
+              <text class="d-sub"    x="783" y="390" text-anchor="middle">9:00 AM PT weekdays</text>
+
+              <rect class="d-node" x="922" y="306" width="168" height="100" rx="8"/>
+              <text class="d-title" x="1006" y="336" text-anchor="middle">Excel pivots</text>
+              <text class="d-sub"   x="1006" y="356" text-anchor="middle">Fulfilment Report</text>
+              <text class="d-det"   x="1006" y="375" text-anchor="middle">reads</text>
+              <text class="d-det"   x="1006" y="391" text-anchor="middle">9000_Enriched</text>
+
+              <line class="d-flow" x1="204" y1="356" x2="247" y2="356" marker-end="url(#mFlow)"/>
+              <text class="d-lbl"  x="225.5" y="346" text-anchor="middle">SFTP</text>
+              <line class="d-flow" x1="427" y1="356" x2="470" y2="356" marker-end="url(#mFlow)"/>
+              <text class="d-lbl"  x="448.5" y="346" text-anchor="middle">upload</text>
+              <line class="d-flow" x1="650" y1="356" x2="693" y2="356" marker-end="url(#mFlow)"/>
+              <text class="d-lbl"  x="671.5" y="346" text-anchor="middle">daily</text>
+              <line class="d-flow" x1="873" y1="356" x2="916" y2="356" marker-end="url(#mFlow)"/>
+              <text class="d-lbl"  x="894.5" y="346" text-anchor="middle">reads</text>
+
+              <!-- ── status band ── -->
+              <rect class="d-band" x="30" y="436" width="1060" height="96" rx="10"/>
+              <text class="d-band-title" x="52" y="464">Delivered — September 2026</text>
+              <circle cx="56" cy="490" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="68" y="494">8 nightly exports land in</text>
+              <text class="d-band-item" x="68" y="512">SharePoint on their own</text>
+              <circle cx="420" cy="490" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="436" y="494">10 business days running beside</text>
+              <text class="d-band-item" x="436" y="512">Power BI — zero variance</text>
+              <circle cx="760" cy="490" r="2.5" fill="var(--accent)"/>
+              <text class="d-band-item" x="776" y="494">Power BI retired; skills run</text>
+              <text class="d-band-item" x="776" y="512">9:00 AM PT every weekday</text>
+            </svg>
+          </div>
+          <figcaption>Eight nightly Full Circle exports now land in SharePoint over SFTP, each with a dated archive copy written on arrival, and the modelling layer has been lifted out of Power BI entirely — the Power Query M transforms and DAX columns were read from the semantic model’s own TMDL definition and re-implemented as a deterministic Python transform that publishes enriched workbooks each weekday morning. The team’s existing Excel pivots point at those workbooks instead. The transform ran beside Power BI for ten consecutive business days, reconciled daily against 11 headline metrics with zero variance, and that record is what justified retiring it.</figcaption>
+        </figure>
+      </article>
+
+      <!-- Case 6 — Edumerge platform -->
+      <article class="case">
+        <div class="lead">
+          <p class="eyebrow">Edumerge Solutions <span class="dot">·</span> 2020–25 <span class="dot">·</span> Platform strategy</p>
+          <h3>From monolithic ERP to a modular, API-driven product</h3>
+          <p class="sum">Every enterprise customer wanted a slightly different ERP, and each one became a custom deployment. I led the shift to modules behind APIs.</p>
+          <div class="metric"><div class="v num">40%</div><div class="l">fewer custom deployments · $214K direct new revenue from the LMS module</div></div>
+        </div>
+        <div class="pao">
+          <div><h4>Problem</h4><p>Growth was capped by engineering capacity: 40%+ of deals needed bespoke work, and onboarding a large institution took months.</p></div>
+          <div><h4>What I did</h4><p>Defined the modular architecture and migration sequence with engineering, shipped an LMS integration as the first module, and led go-to-market into K-12 groups and universities.</p></div>
+          <div><h4>Outcome</h4><p>Custom deployments down 40%, $214K in LMS revenue and $100K+ from the new segments in year one — then owned a $950K+ portfolio from the Founder’s Office.</p></div>
+          <div class="tags">
+            <span class="tag tag--acc">Product architecture</span><span class="tag">GTM strategy</span><span class="tag">Positioning</span><span class="tag">EdTech ERP</span><span class="tag">B2B SaaS</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION: EXPERIENCE ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Experience</p>
+        <h2>Engineer, then product, then strategy — and back to building</h2>
+      </div>
+      <p>I’ve owned the whole distance from a customer’s complaint to production code, and I’m comfortable at every point on it.</p>
+    </div>
+
+    <div class="xp">
+      <div class="role">
+        <div class="when">Jun 2026 — Sep 2026<span class="loc">Irvine, CA</span></div>
+        <div>
+          <h3>AI Automation and Agents Intern</h3>
+          <p class="co">Archipelago Companies <small>· multi-brand premium consumer holding company — OluKai, Melin, Roark, Amble</small></p>
+          <ul>
+            <li>Interviewed VP/Director stakeholders across Finance, Ops, Accounting and IT to prioritize 10 automation opportunities by pain, impact and feasibility; launched 6 workflows in 10 weeks — including a Claude Skills tool that retired Power BI as the warehouse and modelling layer for Melin’s fulfilment and planning workflow, removing ~17 manual actions a day and moving the report from weekly to daily.</li>
+            <li>Redesigned the remittance lifecycle with the VP of Accounting &amp; Finance — automated intake, reconciliation and ERP posting, validated on live transactions, processing time down 90%+.</li>
+            <li>Built Archipelago’s AI automation stack, enabling touchless daily warehouse reporting across 4 brands in US and EU/UK — a 2–3 hour daily manual task reduced to zero human effort, daily ops reporting advanced ~4 hours.</li>
+            <li>Automated the Shopify → Full Circle ERP order flow across 4 brands where no direct connector existed — orchestrated Pipe17, Couchdrop SFTP and the ERP’s own jobs in n8n, with folder-state monitoring that reports discrepancies to Slack — $23K+ annual labor saved, 2.5K+ daily orders processed touchless.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Aug 2017 — Feb 2025<span class="loc">Bengaluru, India</span></div>
+        <div>
+          <h3>Edumerge Solutions</h3>
+          <p class="co">Education ERP &amp; SaaS <small>· three roles over seven and a half years</small></p>
+
+          <div class="sub" style="margin-top:20px">
+            <h4>Strategy and Product Lead, Founder’s Office <span class="when-inline">Sep 2022 — Feb 2025</span></h4>
+            <ul>
+              <li>Owned multiple products generating $950K+ in gross revenue, working directly with client Heads of Department and Service Delivery leaders on adoption and value realization.</li>
+              <li>Launched a centralized analytics suite that cut client costs up to 25% while informing internal pricing tiers and value proposition.</li>
+              <li>Built a Customer Success function for strategic accounts — CSAT up 35%+, $150K+ expansion revenue; created Sales-Tech-Support pods that drove near-zero attrition.</li>
+            </ul>
+          </div>
+          <div class="sub">
+            <h4>Product Manager <span class="when-inline">Apr 2020 — Aug 2022</span></h4>
+            <ul>
+              <li>Led the transition from monolithic ERP modules to a modular, API-driven architecture — 40% fewer custom deployments, faster enterprise onboarding.</li>
+              <li>Spearheaded integration of an online learning platform (LMS) into the ERP, delivering $214K in direct new revenue.</li>
+              <li>Led GTM into K-12 group schools and universities: competitive assessment, positioning, $100K+ new-segment revenue in year one.</li>
+            </ul>
+          </div>
+          <div class="sub">
+            <h4>Development Team Lead <span class="when-inline">Aug 2017 — Mar 2020</span></h4>
+            <ul>
+              <li>Led the technical team building a new college ERP and revamping UI/UX of existing products — 55 institutions onboarded, ~$261K in new revenue.</li>
+              <li>Delivered a seamless migration from Rackspace to AWS, lifting NPS by over 40%.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Jul 2015 — Jul 2017<span class="loc">Bengaluru, India</span></div>
+        <div>
+          <h3>Member Technical Staff — Database Developer</h3>
+          <p class="co">Oracle <small>· core database security</small></p>
+          <ul>
+            <li>Engineered encryption infrastructure for Oracle’s core database security suite — Label Security, Auditing, Data Masking, Virtual Private Database.</li>
+            <li>Recognized with “Rising Star” and “Most Impactful Project” awards.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION: EDUCATION ===== -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Education</p>
+        <h2>Business school on top of a CS foundation</h2>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="school">
+        <p class="when">Expected June 2027 · Irvine, CA</p>
+        <h3>University of California, Irvine — The Paul Merage School of Business</h3>
+        <p class="deg">Master of Business Administration (STEM Certified)</p>
+        <ul>
+          <li>Winner, Butterworth Product Competition · 3rd, USC AI Product Challenge · Finalist, World Case Competition</li>
+          <li>President, Product Management Club · VP, Business and Technology Club</li>
+          <li>Consulting DevSwarm AI (startup) on product and growth strategy</li>
+        </ul>
+      </div>
+      <div class="school">
+        <p class="when">July 2015 · Kerala, India</p>
+        <h3>National Institute of Technology, Calicut</h3>
+        <p class="deg">BTech, Computer Science and Engineering</p>
+        <ul>
+          <li>CGPA 8.6 (distinction) · Best BTech project award, final year</li>
+          <li>Published an <a href="https://ieeexplore.ieee.org/document/7507939" target="_blank" rel="noopener">IEEE paper</a> from the final-year project</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION: SKILLS ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Skills</p>
+        <h2>What I bring to the table</h2>
+      </div>
+    </div>
+    <div class="skills">
+      <div class="sk">
+        <h3>AI &amp; automation</h3>
+        <div class="tags"><span class="tag">AI agents</span><span class="tag">LLM workflows</span><span class="tag">Claude</span><span class="tag">MCP</span><span class="tag">RAG</span><span class="tag">n8n</span><span class="tag">Power Automate</span><span class="tag">Make</span></div>
+      </div>
+      <div class="sk">
+        <h3>Product &amp; strategy</h3>
+        <div class="tags"><span class="tag">Product strategy</span><span class="tag">GTM strategy</span><span class="tag">Positioning</span><span class="tag">Pricing &amp; packaging</span><span class="tag">Discovery &amp; prioritization</span><span class="tag">Roadmapping</span><span class="tag">Customer success</span></div>
+      </div>
+      <div class="sk">
+        <h3>Data &amp; analytics</h3>
+        <div class="tags"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Excel</span><span class="tag">Tableau</span><span class="tag">Power BI</span><span class="tag">Experimentation</span></div>
+      </div>
+      <div class="sk">
+        <h3>Platforms &amp; engineering</h3>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">API integration</span><span class="tag">ERP systems</span><span class="tag">Shopify</span><span class="tag">Salesforce / CRM</span><span class="tag">Database security</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION: ABOUT ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Beyond the job description</h2>
+      </div>
+    </div>
+    <div class="about">
+      <div>
+        <p>I started as an engineer because I wanted to understand how things actually work, and moved into product because the most interesting problems were never purely technical. Seven years at an education-technology company took me from leading a dev team to running strategy out of the Founder’s Office — where I learned that the best product decisions get made close to the customer and close to the P&amp;L at the same time.</p>
+        <p>I came to business school to sharpen that judgement, and I’ve spent it building: an AI product that won its competition, and an automation stack that removes real work from real teams.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>Impact</b><span>Raised funds to sponsor education for 40 underprivileged students</span></div>
+        <div class="fact"><b>Sport</b><span>National-level athlete; captained the Calicut district championship-winning cricket team and won Best Batsman</span></div>
+        <div class="fact"><b>Leadership</b><span>President, Product Management Club · VP, Business &amp; Technology Club (UCI Merage)</span></div>
+        <div class="fact"><b>Recognition</b><span>“Rising Star” and “Most Impactful Project,” Oracle</span></div>
+        <div class="fact"><b>Based in</b><span>Irvine, California · open to relocation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION: CONTACT ===== -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2>Building something in AI, product or operations? Let’s talk.</h2>
+      <p>Graduating June 2027 and open to full-time product management, product marketing, product strategy and AI automation roles — plus internships and project work before then.</p>
+      <div class="cta">
+        <a class="btn btn--primary" href="mailto:anupk1@uci.edu">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/anup1001" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+    <div class="clist">
+      <a href="mailto:anupk1@uci.edu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>anupk1@uci.edu</a>
+      <a href="https://www.linkedin.com/in/anup1001" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>linkedin.com/in/anup1001</a>
+      <a href="https://github.com/anup10" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.8a5.3 5.3 0 0 0-1.5-3.6 4.9 4.9 0 0 0-.1-3.7s-1.2-.3-3.8 1.4a13 13 0 0 0-7 0C6.4 1.3 5.2 1.6 5.2 1.6a4.9 4.9 0 0 0-.1 3.7A5.3 5.3 0 0 0 3.6 9c0 5.3 3.2 6.5 6.2 6.8a3.4 3.4 0 0 0-.9 2.6V22"/></svg>github.com/anup10</a>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Irvine, California</span>
+      <!-- Phone intentionally omitted from the public site; it stays on the resume PDF. -->
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Anup Kumar</span>
+    <span class="mono">Built by hand · updated <span id="upd">Sep 2026</span></span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    // Highlight the nav link for the section in view.
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav ul a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+    if (!('IntersectionObserver' in window) || !secs.length) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    secs.forEach(function(s){ io.observe(s); });
+  })();
+</script>
+</body>
+</html>
